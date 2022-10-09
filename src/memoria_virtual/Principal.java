@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Principal
@@ -26,29 +25,25 @@ public class Principal
 			// Leemos el archivo linea a linea y cargamos las referencias
 			BufferedReader lector = new BufferedReader(new FileReader(
 					new File("").getAbsolutePath() + "\\archivos\\" + nombreArchivo));
-			ArrayList<Integer> referencias = new ArrayList<>(1025);
+			Referencias.inicializar();
 			String linea = lector.readLine();
 			while (linea != null) {
-				referencias.add(Integer.valueOf(linea));
+				Referencias.almacenarReferencia(Integer.valueOf(linea));
 				linea = lector.readLine();
 			}
-			System.out.println(referencias);
+			Referencias.imprimirReferencias();
 		} catch (InputMismatchException e) {
 			System.out.println("Entrada inválida");
 			e.printStackTrace();
-			System.exit(1); // Forzamos la salida del programa en caso de error
 		} catch (FileNotFoundException e) {
 			System.out.println("Error al tratar de encontrar el archivo");
 			e.printStackTrace();
-			System.exit(1); // Forzamos la salida del programa en caso de error
 		} catch (IOException e) {
 			System.out.println("Error al leer el archivo");
 			e.printStackTrace();
-			System.exit(1); // Forzamos la salida del programa en caso de error
 		} catch (NumberFormatException e) {
 			System.out.println("Error al tratar de convertir una referencia leída del archivo en un número");
 			e.printStackTrace();
-			System.exit(1); // Forzamos la salida del programa en caso de error
 		}
 
 		/*
