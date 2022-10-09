@@ -1,4 +1,4 @@
-package src.memoria_virtual;
+package memoria_virtual;
 
 import java.util.Scanner;
 public class Principal
