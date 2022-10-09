@@ -14,7 +14,7 @@ public class Principal
 		try {
 			Scanner in = new Scanner(System.in);
 			// Preguntar por entradas del programa
-			System.out.print("Ingrese el numero de entradas de la TBL: ");
+			System.out.print("Ingrese el numero de entradas de la TLB: ");
 			int entradasTLB = in.nextInt();
 			System.out.print("Ingrese el numero de marcos de pagina en memoria RAM: ");
 			int marcosRAM = in.nextInt();
