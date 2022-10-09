@@ -25,13 +25,14 @@ public class Principal
 			// Leemos el archivo linea a linea y cargamos las referencias
 			BufferedReader lector = new BufferedReader(new FileReader(
 					new File("").getAbsolutePath() + "\\archivos\\" + nombreArchivo));
-			Referencias.inicializar();
+			Referencias referencias = new Referencias();
 			String linea = lector.readLine();
 			while (linea != null) {
-				Referencias.almacenarReferencia(Integer.valueOf(linea));
+				referencias.almacenarReferencia(Integer.valueOf(linea));
 				linea = lector.readLine();
 			}
-			Referencias.imprimirReferencias();
+			referencias.imprimirReferencias();
+			
 		} catch (InputMismatchException e) {
 			System.out.println("Entrada inválida");
 			e.printStackTrace();
