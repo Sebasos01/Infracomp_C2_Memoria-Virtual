@@ -38,7 +38,7 @@ public class Principal
 		
 			// Estructuras principales
 			TP tablaPaginas = new TP(numPaginas);
-			TLB cache = new TLB(entradasTLB, numPaginas);
+			TLB cache = new TLB(entradasTLB);
 			Actualizador actualizador = new Actualizador(referencias, 
 														 tablaPaginas, 
 														 cache,
