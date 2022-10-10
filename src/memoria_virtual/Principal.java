@@ -12,8 +12,11 @@ public class Principal
 	public static void main(String[] args)
 	{
 		try {
-			Scanner in = new Scanner(System.in);
+			// Variables importantes
+			int numPaginas = 64;
+			
 			// Preguntar por entradas del programa
+			Scanner in = new Scanner(System.in);
 			System.out.print("Ingrese el numero de entradas de la TLB: ");
 			int entradasTLB = in.nextInt();
 			System.out.print("Ingrese el numero de marcos de pagina en memoria RAM: ");
@@ -28,10 +31,19 @@ public class Principal
 			Referencias referencias = new Referencias();
 			String linea = lector.readLine();
 			while (linea != null) {
-				referencias.almacenarReferencia(Integer.valueOf(linea));
+				referencias.cargarReferencia(Integer.valueOf(linea));
 				linea = lector.readLine();
 			}
-			referencias.imprimirReferencias();
+			lector.close(); // Cerramos el lector del archivo
+		
+			// Estructuras principales
+			TP tablaPaginas = new TP(numPaginas);
+			TLB cache = new TLB(entradasTLB, numPaginas);
+			Actualizador actualizador = new Actualizador(referencias, 
+														 tablaPaginas, 
+														 cache,
+														 marcosRAM);
+			Envejecimiento envejecimiento = new Envejecimiento(tablaPaginas);
 			
 		} catch (InputMismatchException e) {
 			System.out.println("Entrada inválida");

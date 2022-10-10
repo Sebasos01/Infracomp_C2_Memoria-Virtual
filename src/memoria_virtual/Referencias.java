@@ -8,10 +8,10 @@ public class Referencias
 	private ArrayList<Integer> referencias;
 	
 	public Referencias() {
-		referencias = new ArrayList<>(1025);
+		referencias = new ArrayList<>(1024);
 	}
 	
-	public void almacenarReferencia(int ref) {
+	public void cargarReferencia(int ref) {
 		referencias.add(ref);
 	}
 	
@@ -19,7 +19,8 @@ public class Referencias
 		referencias.get(pos);
 	}
 	
-	public void imprimirReferencias() {
-		System.out.println(referencias);
+	public int obtenerNumReferencias() {
+		return referencias.size();
 	}
+	
 }
