@@ -9,7 +9,16 @@ public class Envejecimiento extends Thread
 	}
 
     public void run() {
-        // To implement
+        while (true)
+        {
+    		try
+    		{
+				Thread.sleep(1);
+			}
+    		catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+        }
     }
 	
 }

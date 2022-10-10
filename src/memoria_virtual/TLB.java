@@ -7,7 +7,7 @@ import java.util.Queue;
 
 public class TLB 
 {
-	// Toca crear cache y fila para poder tener un acceso a las traducciones en O(1) y saber a quién sacar en O(1)
+	// Toca crear cache y fila para poder tener un acceso a las traducciones en O(1) y saber a quien sacar en O(1)
 	private HashMap<Integer, Integer> cache;
 	private Queue<Integer> fila;
 	private int capacidad;

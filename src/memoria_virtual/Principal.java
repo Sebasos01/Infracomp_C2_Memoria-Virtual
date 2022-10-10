@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Principal
@@ -28,10 +29,12 @@ public class Principal
 			// Leemos el archivo linea a linea y cargamos las referencias
 			BufferedReader lector = new BufferedReader(new FileReader(
 					new File("").getAbsolutePath() + "\\archivos\\" + nombreArchivo));
-			Referencias referencias = new Referencias();
+			
+			ArrayList<Integer> referencias = new ArrayList<>(1024);
+			
 			String linea = lector.readLine();
 			while (linea != null) {
-				referencias.cargarReferencia(Integer.valueOf(linea));
+				referencias.add(Integer.valueOf(linea));
 				linea = lector.readLine();
 			}
 			lector.close(); // Cerramos el lector del archivo
@@ -46,7 +49,7 @@ public class Principal
 			Envejecimiento envejecimiento = new Envejecimiento(tablaPaginas);
 			
 		} catch (InputMismatchException e) {
-			System.out.println("Entrada inválida");
+			System.out.println("Entrada invalida");
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
 			System.out.println("Error al tratar de encontrar el archivo");
@@ -55,7 +58,7 @@ public class Principal
 			System.out.println("Error al leer el archivo");
 			e.printStackTrace();
 		} catch (NumberFormatException e) {
-			System.out.println("Error al tratar de convertir una referencia leída del archivo en un número");
+			System.out.println("Error al tratar de convertir una referencia leida del archivo a numero");
 			e.printStackTrace();
 		}
 

@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class TP 
 {
-	// Representa la tabla de páginas
+	// Representa la tabla de paginas
 	// Es un array de entradas
 	private Entrada[] tabla;
 	

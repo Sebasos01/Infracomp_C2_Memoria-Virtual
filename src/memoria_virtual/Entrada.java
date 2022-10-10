@@ -2,19 +2,19 @@ package memoria_virtual;
 
 public class Entrada 
 {
-	// La traducción de página virtual a marco de página física
+	// La traduccion de pagina virtual a marco de pagina fisica
 	private int traduccion;
 	
-	// Sirve para saber desde hace cuanto no se referencia esta página
-	// si contador a es menor que contador b, significa que la página b se referenció después que la página a
+	// Sirve para saber desde hace cuanto no se referencia esta pagina
+	// si contador a es menor que contador b, significa que la pagina b se referencia despues que la pagina a
 	private long contador;
 	
 	// Indica si la pagina fue referenciada recientemente (en el ciclo actual)
 	private boolean R;
 	
 	public Entrada() {
-		// -1 significa que la página no está en memoria física
-		// En un principio, por default, todas las páginas están así (por revisar)
+		// -1 significa que la pagina no esta en memoria fisica
+		// En un principio, por default, todas las paginas estan asi (por revisar)
 		traduccion = -1;
 	}
 	
