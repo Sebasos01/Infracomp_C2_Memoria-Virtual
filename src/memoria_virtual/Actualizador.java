@@ -1,18 +1,19 @@
 package memoria_virtual;
 
 import java.util.ArrayList;
+import java.util.Queue;
 
 public class Actualizador extends Thread
 {
-	private TP tablaPaginas;
-	private ArrayList<Integer> referencias;
-	private TLB cache;
+	private int[][] tp;
+	private Queue<Integer> referencias;
+	private Queue tlb;
 	private int marcosRAM;
 	
-	public Actualizador(ArrayList<Integer> referencias, TP tablaPaginas, TLB cache, int marcosRAM) {
-		this.tablaPaginas = tablaPaginas;
+	public Actualizador(Queue<Integer> referencias, int[][] tp, Queue tlb, int marcosRAM) {
+		this.tp = tp;
 		this.referencias = referencias;
-		this.cache = cache;
+		this.tlb = tlb;
 		this.marcosRAM = marcosRAM;
 	}
 

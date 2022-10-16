@@ -7,16 +7,17 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
+
 public class Principal
 {
+	private static final int NUM_PAGINAS = 64;
+	
 	public static void main(String[] args)
 	{
 		try {
-			// Variables importantes
-			int numPaginas = 64;
-			
-			// Preguntar por entradas del programa
 			Scanner in = new Scanner(System.in);
 			System.out.print("Ingrese el numero de entradas de la TLB: ");
 			int entradasTLB = in.nextInt();
@@ -24,29 +25,28 @@ public class Principal
 			int marcosRAM = in.nextInt();
 			System.out.print("Ingrese el nombre del archivo con las referencias: ");
 			String nombreArchivo = in.next();
-			in.close(); // Cerramos el input stream scanner
+			in.close();
 			
-			// Leemos el archivo linea a linea y cargamos las referencias
 			BufferedReader lector = new BufferedReader(new FileReader(
 					new File("").getAbsolutePath() + "\\archivos\\" + nombreArchivo));
 			
-			ArrayList<Integer> referencias = new ArrayList<>(1024);
+			Queue<Integer> referencias = new LinkedList<>();
 			
 			String linea = lector.readLine();
 			while (linea != null) {
 				referencias.add(Integer.valueOf(linea));
 				linea = lector.readLine();
 			}
-			lector.close(); // Cerramos el lector del archivo
-		
-			// Estructuras principales
-			TP tablaPaginas = new TP(numPaginas);
-			TLB cache = new TLB(entradasTLB);
-			Actualizador actualizador = new Actualizador(referencias, 
-														 tablaPaginas, 
-														 cache,
-														 marcosRAM);
-			Envejecimiento envejecimiento = new Envejecimiento(tablaPaginas);
+			lector.close();
+
+			Queue<Integer> tlb = new LinkedList<>();
+			int[][] tp = new int[NUM_PAGINAS][2];
+			
+			Actualizador actualizador = new Actualizador(referencias, tp, tlb, marcosRAM);
+			Envejecimiento envejecimiento = new Envejecimiento(tp);
+			
+			actualizador.start();
+			envejecimiento.start();
 			
 		} catch (InputMismatchException e) {
 			System.out.println("Entrada invalida");

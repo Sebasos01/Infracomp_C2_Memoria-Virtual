@@ -2,10 +2,10 @@ package memoria_virtual;
 
 public class Envejecimiento extends Thread
 {
-	private TP tablaPaginas;
+	private int[][] tp;
 	
-	public Envejecimiento(TP tablaPaginas) {
-		this.tablaPaginas = tablaPaginas;
+	public Envejecimiento(int[][] tp) {
+		this.tp = tp;
 	}
 
     public void run() {
