@@ -1,16 +1,16 @@
 package memoria_virtual;
 
+import java.util.ArrayList;
 import java.util.Queue;
 
 public class Actualizador extends Thread
 {
 	private TP tp;
 	private Queue<Integer> referencias;
-	private Queue<Integer> tlb;
+	private ArrayList<Integer> tlb;
 	private int entradasTLB;
-	private static int tiempo = 0;
 	
-	public Actualizador(Queue<Integer> referencias, TP tp, Queue<Integer> tlb, int entradasTLB) {
+	public Actualizador(Queue<Integer> referencias, TP tp, ArrayList<Integer> tlb, int entradasTLB) {
 		this.tp = tp;
 		this.referencias = referencias;
 		this.tlb = tlb;
@@ -24,27 +24,28 @@ public class Actualizador extends Thread
 			{
 				if (!tp.contains(referencia))
 				{
-					//Fallo de página
+					Principal.fallos += 1;
 					tp.add(referencia);
-					tiempo += 10000060;
+					Principal.tiempoDirecciones += 60;
+					Principal.tiempoDatos += 10000000;
 				}
 				else
 				{
-					tiempo += 30;
+					Principal.tiempoDirecciones += 30;
+					Principal.tiempoDatos += 30;
 				}
 				
 				tp.registrar(referencia);
 				
 				if (tlb.size() == entradasTLB)
 				{
-					tlb.remove();
+					tlb.remove(0);
 				}
 				tlb.add(referencia);
-				tiempo += 30;
 			}
 			else
 			{
-				tiempo += 2;
+				Principal.tiempoDirecciones += 2;
 			}
 			
 			try {

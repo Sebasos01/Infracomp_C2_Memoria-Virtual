@@ -1,7 +1,6 @@
 package memoria_virtual;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,7 +12,11 @@ import java.util.Scanner;
 
 public class Principal
 {
-	public static void main(String[] args)
+	public static int fallos = 0;
+	public static long tiempoDatos = 0;
+	public static long tiempoDirecciones = 0;
+	
+	public static void main(String[] args) throws InterruptedException
 	{
 		try {
 			Scanner in = new Scanner(System.in);
@@ -32,12 +35,12 @@ public class Principal
 			String linea = lector.readLine();
 			while (linea != null)
 			{
-				referencias.add(Integer.valueOf(linea));
+				referencias.add(Integer.parseInt(linea));
 				linea = lector.readLine();
 			}
 			lector.close();
 
-			Queue<Integer> tlb = new LinkedList<>();
+			ArrayList<Integer> tlb = new ArrayList<>();
 			TP tp = new TP(marcosRAM);
 			
 			Actualizador actualizador = new Actualizador(referencias, tp, tlb, entradasTLB);
@@ -45,6 +48,13 @@ public class Principal
 			
 			actualizador.start();
 			envejecimiento.start();
+			
+			actualizador.join();
+			envejecimiento.kill();
+			
+			System.out.println("\nFallos: " + fallos
+					+ "\nTiempo carga de datos: " + tiempoDatos + " ns"
+					+ "\nTiempo traduccion direcciones: " + tiempoDirecciones + " ns");
 			
 		} catch (InputMismatchException e) {
 			System.out.println("Entrada invalida");

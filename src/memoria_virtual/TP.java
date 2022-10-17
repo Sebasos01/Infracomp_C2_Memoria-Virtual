@@ -24,7 +24,12 @@ public class TP
 	{
 		if (paginas.size() == marcosRAM)
 		{
-			//PROCESO ELIMINAR MÁS VIEJO
+			ArrayList<Integer> copia = new ArrayList<Integer>(historiales);
+			copia.removeIf(n -> n<0);
+			copia.sort(null);
+			int indice = historiales.indexOf(copia.get(0));
+			paginas.remove(indice);
+			historiales.remove(indice);
 		}
 		paginas.add(pagina);
 		historiales.add(0);
@@ -41,6 +46,6 @@ public class TP
 	public synchronized void registrar(int pagina)
 	{
 		int historial = historiales.get(paginas.indexOf(pagina));
-		//PONERLE EL 1 A historial
+		historial |= ~(2^31-1);
 	}
 }

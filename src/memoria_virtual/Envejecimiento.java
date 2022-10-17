@@ -3,15 +3,17 @@ package memoria_virtual;
 public class Envejecimiento extends Thread
 {
 	private TP tp;
+	private boolean continuar;
 	
 	public Envejecimiento(TP tp)
 	{
 		this.tp = tp;
+		this.continuar = true;
 	}
 
     public void run()
     {
-        while (true)
+        while (continuar)
         {
     		tp.envejecer();	
         	try {
@@ -20,6 +22,11 @@ public class Envejecimiento extends Thread
 				e.printStackTrace();
 			}
         }
+    }
+    
+    public void kill()
+    {
+        continuar = false;
     }
 	
 }
