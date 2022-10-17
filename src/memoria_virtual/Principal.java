@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -40,7 +39,7 @@ public class Principal
 			}
 			lector.close();
 
-			ArrayList<Integer> tlb = new ArrayList<>();
+			Queue<Integer> tlb = new LinkedList<>();
 			TP tp = new TP(marcosRAM);
 			
 			Actualizador actualizador = new Actualizador(referencias, tp, tlb, entradasTLB);
@@ -69,16 +68,5 @@ public class Principal
 			System.out.println("Error al tratar de convertir una referencia leida del archivo a numero");
 			e.printStackTrace();
 		}
-
-		/*
-		TIEMPO DIRECCIONES:
-			TBL -> 2 ns
-			TP -> 30 ns
-			FALLO PG -> 2*TP
-		
-		TIEMPO DATOS:
-			RAM ->  30 ns
-			FALLO PG -> 10 ns
-		*/
 	}
 }
