@@ -13,8 +13,6 @@ import java.util.Scanner;
 
 public class Principal
 {
-	private static final int NUM_PAGINAS = 64;
-	
 	public static void main(String[] args)
 	{
 		try {
@@ -27,22 +25,22 @@ public class Principal
 			String nombreArchivo = in.next();
 			in.close();
 			
-			BufferedReader lector = new BufferedReader(new FileReader(
-					new File("").getAbsolutePath() + "\\archivos\\" + nombreArchivo));
+			BufferedReader lector = new BufferedReader(new FileReader("./data/" + nombreArchivo));
 			
 			Queue<Integer> referencias = new LinkedList<>();
 			
 			String linea = lector.readLine();
-			while (linea != null) {
+			while (linea != null)
+			{
 				referencias.add(Integer.valueOf(linea));
 				linea = lector.readLine();
 			}
 			lector.close();
 
 			Queue<Integer> tlb = new LinkedList<>();
-			int[][] tp = new int[NUM_PAGINAS][2];
+			TP tp = new TP(marcosRAM);
 			
-			Actualizador actualizador = new Actualizador(referencias, tp, tlb, marcosRAM);
+			Actualizador actualizador = new Actualizador(referencias, tp, tlb, entradasTLB);
 			Envejecimiento envejecimiento = new Envejecimiento(tp);
 			
 			actualizador.start();

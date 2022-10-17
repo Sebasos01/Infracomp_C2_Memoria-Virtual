@@ -2,20 +2,21 @@ package memoria_virtual;
 
 public class Envejecimiento extends Thread
 {
-	private int[][] tp;
+	private TP tp;
 	
-	public Envejecimiento(int[][] tp) {
+	public Envejecimiento(TP tp)
+	{
 		this.tp = tp;
 	}
 
-    public void run() {
+    public void run()
+    {
         while (true)
         {
-    		try
-    		{
-				Thread.sleep(1);
-			}
-    		catch (InterruptedException e) {
+    		tp.envejecer();	
+        	try {
+    			Thread.sleep(1);
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
         }
