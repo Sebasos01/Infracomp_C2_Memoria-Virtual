@@ -16,6 +16,7 @@ public class Envejecimiento extends Thread
         while (continuar)
         {
     		tp.envejecer();	
+    		
         	try {
     			Thread.sleep(1);
 			} catch (InterruptedException e) {

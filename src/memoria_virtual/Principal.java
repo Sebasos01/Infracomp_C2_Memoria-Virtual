@@ -4,9 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class Principal
@@ -29,7 +28,7 @@ public class Principal
 			
 			BufferedReader lector = new BufferedReader(new FileReader("./data/" + nombreArchivo));
 			
-			Queue<Integer> referencias = new LinkedList<>();
+			ArrayList<Integer> referencias = new ArrayList<>();
 			
 			String linea = lector.readLine();
 			while (linea != null)
@@ -39,7 +38,7 @@ public class Principal
 			}
 			lector.close();
 
-			Queue<Integer> tlb = new LinkedList<>();
+			ArrayList<Integer> tlb = new ArrayList<>();
 			TP tp = new TP(marcosRAM);
 			
 			Actualizador actualizador = new Actualizador(referencias, tp, tlb, entradasTLB);

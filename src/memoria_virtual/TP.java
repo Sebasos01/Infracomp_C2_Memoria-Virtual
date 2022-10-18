@@ -20,19 +20,25 @@ public class TP
 		return paginas.contains(pagina);
 	}
 	
-	public synchronized void add(int pagina)
+	public synchronized int add(int pagina)
 	{
+		int paginaTLB = -1;
+		
 		if (paginas.size() == marcosRAM)
 		{
 			ArrayList<Integer> copia = new ArrayList<Integer>(historiales);
 			copia.removeIf(n -> n<0);
 			copia.sort(null);
 			int indice = historiales.indexOf(copia.get(0));
+			paginaTLB = paginas.get(indice);
 			paginas.remove(indice);
 			historiales.remove(indice);
 		}
+		
 		paginas.add(pagina);
 		historiales.add(0);
+		
+		return paginaTLB;
 	}
 	
 	public synchronized void envejecer()
